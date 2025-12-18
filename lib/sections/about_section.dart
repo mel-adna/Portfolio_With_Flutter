@@ -57,15 +57,20 @@ class _DesktopLayout extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
+      crossAxisAlignment: CrossAxisAlignment.center,
       children: [
+        // Profile image on the left - larger on desktop
+        _ProfileImage(),
+        const SizedBox(width: AppSpacing.xxl),
+        // About content takes most space
         Expanded(
-          flex: 2,
+          flex: 3,
           child: _AboutContent(),
         ),
-        const SizedBox(width: AppSpacing.xxl),
-        Expanded(
-          flex: 1,
+        const SizedBox(width: AppSpacing.xl),
+        // Stats on the right - compact
+        SizedBox(
+          width: 180,
           child: _StatsCard(),
         ),
       ],
@@ -76,7 +81,7 @@ class _DesktopLayout extends StatelessWidget {
 class _ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final size = Responsive.value(context, mobile: 180.0, tablet: 220.0, desktop: 250.0);
+    final size = Responsive.value(context, mobile: 180.0, tablet: 240.0, desktop: 300.0);
     
     return Container(
       width: size,

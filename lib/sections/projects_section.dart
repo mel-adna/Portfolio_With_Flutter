@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../core/theme/app_colors.dart';
 import '../core/theme/app_spacing.dart';
@@ -229,7 +230,7 @@ class _ProjectCard extends StatelessWidget {
               if (project.githubUrl != null)
                 ShadcnButton(
                   text: 'GitHub',
-                  icon: Icons.code_rounded,
+                  icon: FontAwesomeIcons.github,
                   variant: ShadcnButtonVariant.ghost,
                   size: ShadcnButtonSize.sm,
                   onPressed: () => _launchUrl(project.githubUrl!),
@@ -238,7 +239,7 @@ class _ProjectCard extends StatelessWidget {
                 const SizedBox(width: AppSpacing.sm),
                 ShadcnButton(
                   text: 'Demo',
-                  icon: Icons.open_in_new_rounded,
+                  icon: FontAwesomeIcons.globe,
                   variant: ShadcnButtonVariant.ghost,
                   size: ShadcnButtonSize.sm,
                   onPressed: () => _launchUrl(project.demoUrl!),

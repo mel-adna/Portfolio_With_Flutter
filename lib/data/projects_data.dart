@@ -99,7 +99,7 @@ Key Features:
 • Contact form with validation''',
     technologies: ['Flutter Web', 'Dart', 'Responsive Design'],
     githubUrl: 'https://github.com/mel-adna/Portfolio_With_Flutter',
-    demoUrl: 'https://mel-adna.github.io/Portfolio_With_Flutter',
+    demoUrl: 'https://mel-adna.github.io/',
     category: ProjectCategory.web,
   ),
 ];

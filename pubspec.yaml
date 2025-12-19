@@ -40,6 +40,7 @@ dependencies:
   
   # URL launcher for external links
   url_launcher: ^6.3.1
+  font_awesome_flutter: ^10.12.0
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +52,7 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^6.0.0
+  flutter_launcher_icons: ^0.14.4
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
@@ -65,6 +67,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/
     - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see

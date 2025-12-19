@@ -224,13 +224,9 @@ class _NavigationBar extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: AppColors.accent(context),
                       borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
-                    ),
-                    child: Center(
-                      child: Text(
-                        'M',
-                        style: AppTypography.bodyMedium(
-                          Colors.white,
-                        ).copyWith(fontWeight: FontWeight.bold),
+                      image: const DecorationImage(
+                        image: AssetImage('assets/icon.png'),
+                        fit: BoxFit.cover,
                       ),
                     ),
                   ),

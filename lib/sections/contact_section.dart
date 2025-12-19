@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../core/theme/app_colors.dart';
 import '../core/theme/app_spacing.dart';
@@ -235,13 +236,13 @@ class _ContactInfo extends StatelessWidget {
         Row(
           children: [
             _SocialButton(
-              icon: Icons.code_rounded,
+              icon: FontAwesomeIcons.github,
               label: 'GitHub',
               onTap: () => _launchUrl('https://github.com/mel-adna'),
             ),
             const SizedBox(width: AppSpacing.sm),
             _SocialButton(
-              icon: Icons.work_rounded,
+              icon: FontAwesomeIcons.linkedin,
               label: 'LinkedIn',
               onTap: () => _launchUrl('https://www.linkedin.com/in/mel-adna/'),
             ),

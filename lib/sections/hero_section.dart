@@ -10,11 +10,7 @@ class HeroSection extends StatelessWidget {
   final VoidCallback? onViewProjects;
   final VoidCallback? onContact;
 
-  const HeroSection({
-    super.key,
-    this.onViewProjects,
-    this.onContact,
-  });
+  const HeroSection({super.key, this.onViewProjects, this.onContact});
 
   @override
   Widget build(BuildContext context) {
@@ -23,8 +19,18 @@ class HeroSection extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: Responsive.value(context, mobile: 24, tablet: 48, desktop: 64),
-        vertical: Responsive.value(context, mobile: 64, tablet: 96, desktop: 120),
+        horizontal: Responsive.value(
+          context,
+          mobile: 24,
+          tablet: 48,
+          desktop: 64,
+        ),
+        vertical: Responsive.value(
+          context,
+          mobile: 64,
+          tablet: 96,
+          desktop: 120,
+        ),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,8 +67,15 @@ class HeroSection extends StatelessWidget {
               ],
             ),
           ),
-          SizedBox(height: Responsive.value(context, mobile: 24, tablet: 32, desktop: 40)),
-          
+          SizedBox(
+            height: Responsive.value(
+              context,
+              mobile: 24,
+              tablet: 32,
+              desktop: 40,
+            ),
+          ),
+
           // Name
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 800),
@@ -70,15 +83,21 @@ class HeroSection extends StatelessWidget {
               'Mohamed Eladnani',
               style: Responsive.value(
                 context,
-                mobile: AppTypography.displaySmall(AppColors.foreground(context)),
-                tablet: AppTypography.displayMedium(AppColors.foreground(context)),
-                desktop: AppTypography.displayLarge(AppColors.foreground(context)),
+                mobile: AppTypography.displaySmall(
+                  AppColors.foreground(context),
+                ),
+                tablet: AppTypography.displayMedium(
+                  AppColors.foreground(context),
+                ),
+                desktop: AppTypography.displayLarge(
+                  AppColors.foreground(context),
+                ),
               ),
               textAlign: TextAlign.center,
             ),
           ),
           const SizedBox(height: AppSpacing.md),
-          
+
           // Title
           Text(
             'Flutter Developer',
@@ -86,18 +105,27 @@ class HeroSection extends StatelessWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(height: AppSpacing.lg),
-          
+
           // Subheading
           ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),
             child: Text(
               'Building beautiful, performant, and scalable mobile applications with Flutter. Based in Morocco, passionate about creating exceptional user experiences.',
-              style: AppTypography.bodyLarge(AppColors.mutedForeground(context)),
+              style: AppTypography.bodyLarge(
+                AppColors.mutedForeground(context),
+              ),
               textAlign: TextAlign.center,
             ),
           ),
-          SizedBox(height: Responsive.value(context, mobile: 32, tablet: 40, desktop: 48)),
-          
+          SizedBox(
+            height: Responsive.value(
+              context,
+              mobile: 32,
+              tablet: 40,
+              desktop: 48,
+            ),
+          ),
+
           // CTA Buttons
           Wrap(
             spacing: AppSpacing.md,
@@ -120,8 +148,15 @@ class HeroSection extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: Responsive.value(context, mobile: 48, tablet: 64, desktop: 80)),
-          
+          SizedBox(
+            height: Responsive.value(
+              context,
+              mobile: 48,
+              tablet: 64,
+              desktop: 80,
+            ),
+          ),
+
           // Tech stack badges
           _TechStackRow(),
         ],
@@ -181,14 +216,10 @@ class _TechIconState extends State<_TechIcon> {
           vertical: AppSpacing.sm,
         ),
         decoration: BoxDecoration(
-          color: _isHovered
-              ? AppColors.muted(context)
-              : Colors.transparent,
+          color: _isHovered ? AppColors.muted(context) : Colors.transparent,
           borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
           border: Border.all(
-            color: _isHovered
-                ? AppColors.border(context)
-                : Colors.transparent,
+            color: _isHovered ? AppColors.border(context) : Colors.transparent,
           ),
         ),
         child: Text(

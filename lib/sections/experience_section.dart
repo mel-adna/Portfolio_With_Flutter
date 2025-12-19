@@ -20,7 +20,9 @@ class ExperienceSection extends StatelessWidget {
       color: AppColors.muted(context).withValues(alpha: 0.3),
       child: Center(
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: Responsive.contentMaxWidth(context)),
+          constraints: BoxConstraints(
+            maxWidth: Responsive.contentMaxWidth(context),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -30,28 +32,33 @@ class ExperienceSection extends StatelessWidget {
                 children: [
                   Text(
                     'Work Experience',
-                    style: AppTypography.headingLarge(AppColors.foreground(context)),
+                    style: AppTypography.headingLarge(
+                      AppColors.foreground(context),
+                    ),
                   ),
                   const SizedBox(height: AppSpacing.sm),
                   Text(
                     'My professional journey and career highlights',
-                    style: AppTypography.bodyMedium(AppColors.mutedForeground(context)),
+                    style: AppTypography.bodyMedium(
+                      AppColors.mutedForeground(context),
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: AppSpacing.xl),
-              
+
               // Experience timeline
               ListView.separated(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
                 itemCount: experienceData.length,
-                separatorBuilder: (_, __) => const SizedBox(height: AppSpacing.md),
+                separatorBuilder: (context, index) =>
+                    const SizedBox(height: AppSpacing.md),
                 itemBuilder: (context, index) {
                   final experience = experienceData[index];
                   final isFirst = index == 0;
                   final isLast = index == experienceData.length - 1;
-                  
+
                   return _ExperienceCard(
                     experience: experience,
                     isFirst: isFirst,
@@ -102,10 +109,14 @@ class _ExperienceCard extends StatelessWidget {
                   width: 12,
                   height: 12,
                   decoration: BoxDecoration(
-                    color: isFirst ? AppColors.accent(context) : AppColors.border(context),
+                    color: isFirst
+                        ? AppColors.accent(context)
+                        : AppColors.border(context),
                     borderRadius: BorderRadius.circular(6),
                     border: Border.all(
-                      color: isFirst ? AppColors.accent(context) : AppColors.border(context),
+                      color: isFirst
+                          ? AppColors.accent(context)
+                          : AppColors.border(context),
                       width: 2,
                     ),
                   ),
@@ -124,7 +135,7 @@ class _ExperienceCard extends StatelessWidget {
           ),
           const SizedBox(width: AppSpacing.md),
         ],
-        
+
         // Experience card
         Expanded(
           child: ShadcnCard(
@@ -141,12 +152,16 @@ class _ExperienceCard extends StatelessWidget {
                       height: 48,
                       decoration: BoxDecoration(
                         color: AppColors.accent(context).withValues(alpha: 0.1),
-                        borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
+                        borderRadius: BorderRadius.circular(
+                          AppSpacing.radiusMd,
+                        ),
                       ),
                       child: Center(
                         child: Text(
                           experience.company[0],
-                          style: AppTypography.headingSmall(AppColors.accent(context)),
+                          style: AppTypography.headingSmall(
+                            AppColors.accent(context),
+                          ),
                         ),
                       ),
                     ),
@@ -157,12 +172,16 @@ class _ExperienceCard extends StatelessWidget {
                         children: [
                           Text(
                             experience.role,
-                            style: AppTypography.headingSmall(AppColors.foreground(context)),
+                            style: AppTypography.headingSmall(
+                              AppColors.foreground(context),
+                            ),
                           ),
                           const SizedBox(height: AppSpacing.xxs),
                           Text(
                             experience.company,
-                            style: AppTypography.bodyMedium(AppColors.mutedForeground(context)),
+                            style: AppTypography.bodyMedium(
+                              AppColors.mutedForeground(context),
+                            ),
                           ),
                         ],
                       ),
@@ -170,7 +189,7 @@ class _ExperienceCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: AppSpacing.sm),
-                
+
                 // Duration and location
                 Wrap(
                   spacing: AppSpacing.md,
@@ -187,14 +206,16 @@ class _ExperienceCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: AppSpacing.md),
-                
+
                 // Description
                 Text(
                   experience.description,
-                  style: AppTypography.bodyMedium(AppColors.mutedForeground(context)),
+                  style: AppTypography.bodyMedium(
+                    AppColors.mutedForeground(context),
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.md),
-                
+
                 // Responsibilities accordion
                 ShadcnAccordion(
                   items: [
@@ -204,7 +225,9 @@ class _ExperienceCard extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: experience.responsibilities.map((r) {
                           return Padding(
-                            padding: const EdgeInsets.only(bottom: AppSpacing.sm),
+                            padding: const EdgeInsets.only(
+                              bottom: AppSpacing.sm,
+                            ),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
@@ -231,7 +254,7 @@ class _ExperienceCard extends StatelessWidget {
                   ],
                 ),
                 const SizedBox(height: AppSpacing.md),
-                
+
                 // Technologies
                 Wrap(
                   spacing: AppSpacing.xs,
@@ -264,11 +287,7 @@ class _MetaItem extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(
-          icon,
-          size: 14,
-          color: AppColors.mutedForeground(context),
-        ),
+        Icon(icon, size: 14, color: AppColors.mutedForeground(context)),
         const SizedBox(width: AppSpacing.xs),
         Text(
           text,

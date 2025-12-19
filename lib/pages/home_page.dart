@@ -27,7 +27,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final ScrollController _scrollController = ScrollController();
-  
+
   // Section keys for scrolling
   final GlobalKey _aboutKey = GlobalKey();
   final GlobalKey _skillsKey = GlobalKey();
@@ -62,122 +62,104 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.background(context),
-      body: Stack(
-        children: [
-          // Main content
-          CustomScrollView(
-            controller: _scrollController,
-            slivers: [
-              // Navigation bar
-              SliverToBoxAdapter(
-                child: _NavigationBar(
-                  onThemeToggle: widget.onThemeToggle,
-                  isDarkMode: widget.isDarkMode,
-                  onAbout: _scrollToAbout,
-                  onProjects: _scrollToProjects,
-                  onExperience: _scrollToExperience,
-                  onContact: _scrollToContact,
-                ),
-              ),
-              
-              // Hero section
-              SliverToBoxAdapter(
-                child: HeroSection(
-                  onViewProjects: _scrollToProjects,
-                  onContact: _scrollToContact,
-                ),
-              ),
-              
-              // About section
-              SliverToBoxAdapter(
-                child: Container(
-                  key: _aboutKey,
-                  child: const AboutSection(),
-                ),
-              ),
-              
-              // Spacing
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: Responsive.value(
-                    context,
-                    mobile: AppSpacing.sectionVerticalSpacingMobile,
-                    desktop: AppSpacing.sectionVerticalSpacing,
-                  ),
-                ),
-              ),
-              
-              // Skills section
-              SliverToBoxAdapter(
-                child: Container(
-                  key: _skillsKey,
-                  child: const SkillsSection(),
-                ),
-              ),
-              
-              // Spacing
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: Responsive.value(
-                    context,
-                    mobile: AppSpacing.sectionVerticalSpacingMobile,
-                    desktop: AppSpacing.sectionVerticalSpacing,
-                  ),
-                ),
-              ),
-              
-              // Projects section
-              SliverToBoxAdapter(
-                child: Container(
-                  key: _projectsKey,
-                  child: const ProjectsSection(),
-                ),
-              ),
-              
-              // Spacing
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: Responsive.value(
-                    context,
-                    mobile: AppSpacing.sectionVerticalSpacingMobile,
-                    desktop: AppSpacing.sectionVerticalSpacing,
-                  ),
-                ),
-              ),
-              
-              // Experience section
-              SliverToBoxAdapter(
-                child: Container(
-                  key: _experienceKey,
-                  child: const ExperienceSection(),
-                ),
-              ),
-              
-              // Spacing
-              SliverToBoxAdapter(
-                child: SizedBox(
-                  height: Responsive.value(
-                    context,
-                    mobile: AppSpacing.sectionVerticalSpacingMobile,
-                    desktop: AppSpacing.sectionVerticalSpacing,
-                  ),
-                ),
-              ),
-              
-              // Contact section
-              SliverToBoxAdapter(
-                child: Container(
-                  key: _contactKey,
-                  child: const ContactSection(),
-                ),
-              ),
-              
-              // Footer
-              const SliverToBoxAdapter(
-                child: _Footer(),
-              ),
-            ],
+      body: CustomScrollView(
+        controller: _scrollController,
+        slivers: [
+          // Navigation bar
+          SliverToBoxAdapter(
+            child: _NavigationBar(
+              onThemeToggle: widget.onThemeToggle,
+              isDarkMode: widget.isDarkMode,
+              onAbout: _scrollToAbout,
+              onSkills: _scrollToSkills,
+              onProjects: _scrollToProjects,
+              onExperience: _scrollToExperience,
+              onContact: _scrollToContact,
+            ),
           ),
+
+          // Hero section
+          SliverToBoxAdapter(
+            child: HeroSection(
+              onViewProjects: _scrollToProjects,
+              onContact: _scrollToContact,
+            ),
+          ),
+
+          // About section
+          SliverToBoxAdapter(
+            child: Container(key: _aboutKey, child: const AboutSection()),
+          ),
+
+          // Spacing
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: Responsive.value(
+                context,
+                mobile: AppSpacing.sectionVerticalSpacingMobile,
+                desktop: AppSpacing.sectionVerticalSpacing,
+              ),
+            ),
+          ),
+
+          // Skills section
+          SliverToBoxAdapter(
+            child: Container(key: _skillsKey, child: const SkillsSection()),
+          ),
+
+          // Spacing
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: Responsive.value(
+                context,
+                mobile: AppSpacing.sectionVerticalSpacingMobile,
+                desktop: AppSpacing.sectionVerticalSpacing,
+              ),
+            ),
+          ),
+
+          // Projects section
+          SliverToBoxAdapter(
+            child: Container(key: _projectsKey, child: const ProjectsSection()),
+          ),
+
+          // Spacing
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: Responsive.value(
+                context,
+                mobile: AppSpacing.sectionVerticalSpacingMobile,
+                desktop: AppSpacing.sectionVerticalSpacing,
+              ),
+            ),
+          ),
+
+          // Experience section
+          SliverToBoxAdapter(
+            child: Container(
+              key: _experienceKey,
+              child: const ExperienceSection(),
+            ),
+          ),
+
+          // Spacing
+          SliverToBoxAdapter(
+            child: SizedBox(
+              height: Responsive.value(
+                context,
+                mobile: AppSpacing.sectionVerticalSpacingMobile,
+                desktop: AppSpacing.sectionVerticalSpacing,
+              ),
+            ),
+          ),
+
+          // Contact section
+          SliverToBoxAdapter(
+            child: Container(key: _contactKey, child: const ContactSection()),
+          ),
+
+          // Footer
+          const SliverToBoxAdapter(child: _Footer()),
         ],
       ),
     );
@@ -189,6 +171,7 @@ class _NavigationBar extends StatelessWidget {
   final VoidCallback onThemeToggle;
   final bool isDarkMode;
   final VoidCallback? onAbout;
+  final VoidCallback? onSkills;
   final VoidCallback? onProjects;
   final VoidCallback? onExperience;
   final VoidCallback? onContact;
@@ -197,6 +180,7 @@ class _NavigationBar extends StatelessWidget {
     required this.onThemeToggle,
     required this.isDarkMode,
     this.onAbout,
+    this.onSkills,
     this.onProjects,
     this.onExperience,
     this.onContact,
@@ -209,21 +193,25 @@ class _NavigationBar extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: Responsive.value(context, mobile: 16, tablet: 32, desktop: 64),
+        horizontal: Responsive.value(
+          context,
+          mobile: 16,
+          tablet: 32,
+          desktop: 64,
+        ),
         vertical: AppSpacing.md,
       ),
       decoration: BoxDecoration(
         color: AppColors.background(context).withValues(alpha: 0.8),
         border: Border(
-          bottom: BorderSide(
-            color: AppColors.border(context),
-            width: 1,
-          ),
+          bottom: BorderSide(color: AppColors.border(context), width: 1),
         ),
       ),
       child: Center(
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: Responsive.contentMaxWidth(context)),
+          constraints: BoxConstraints(
+            maxWidth: Responsive.contentMaxWidth(context),
+          ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -240,38 +228,55 @@ class _NavigationBar extends StatelessWidget {
                     child: Center(
                       child: Text(
                         'M',
-                        style: AppTypography.bodyMedium(Colors.white)
-                            .copyWith(fontWeight: FontWeight.bold),
+                        style: AppTypography.bodyMedium(
+                          Colors.white,
+                        ).copyWith(fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
-                  if (!isMobile) ...[
+                  if (Responsive.isDesktop(context)) ...[
                     const SizedBox(width: AppSpacing.sm),
                     Text(
                       'Mohamed Eladnani',
-                      style: AppTypography.bodyMedium(AppColors.foreground(context))
-                          .copyWith(fontWeight: FontWeight.w600),
+                      style: AppTypography.bodyMedium(
+                        AppColors.foreground(context),
+                      ).copyWith(fontWeight: FontWeight.w600),
                     ),
                   ],
                 ],
               ),
-              
-              // Navigation links (desktop only)
+
+              // Navigation links (desktop and tablet)
               if (!isMobile)
-                Row(
-                  children: [
-                    _NavLink(text: 'About', onTap: onAbout ?? () {}),
-                    _NavLink(text: 'Projects', onTap: onProjects ?? () {}),
-                    _NavLink(text: 'Experience', onTap: onExperience ?? () {}),
-                    _NavLink(text: 'Contact', onTap: onContact ?? () {}),
-                  ],
+                Expanded(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: AppSpacing.md,
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _NavLink(text: 'About', onTap: onAbout ?? () {}),
+                          _NavLink(text: 'Skills', onTap: onSkills ?? () {}),
+                          _NavLink(
+                            text: 'Projects',
+                            onTap: onProjects ?? () {},
+                          ),
+                          _NavLink(
+                            text: 'Experience',
+                            onTap: onExperience ?? () {},
+                          ),
+                          _NavLink(text: 'Contact', onTap: onContact ?? () {}),
+                        ],
+                      ),
+                    ),
+                  ),
                 ),
-              
+
               // Theme toggle
-              _ThemeToggle(
-                isDarkMode: isDarkMode,
-                onToggle: onThemeToggle,
-              ),
+              _ThemeToggle(isDarkMode: isDarkMode, onToggle: onThemeToggle),
             ],
           ),
         ),
@@ -303,7 +308,14 @@ class _NavLinkState extends State<_NavLink> {
       child: GestureDetector(
         onTap: widget.onTap,
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: AppSpacing.md),
+          padding: EdgeInsets.symmetric(
+            horizontal: Responsive.value(
+              context,
+              mobile: 8,
+              tablet: 8,
+              desktop: 16,
+            ),
+          ),
           child: Text(
             widget.text,
             style: AppTypography.bodySmall(
@@ -344,14 +356,14 @@ class _ThemeToggleState extends State<_ThemeToggle> {
           duration: const Duration(milliseconds: 150),
           padding: const EdgeInsets.all(AppSpacing.sm),
           decoration: BoxDecoration(
-            color: _isHovered
-                ? AppColors.muted(context)
-                : Colors.transparent,
+            color: _isHovered ? AppColors.muted(context) : Colors.transparent,
             borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
             border: Border.all(color: AppColors.border(context)),
           ),
           child: Icon(
-            widget.isDarkMode ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
+            widget.isDarkMode
+                ? Icons.light_mode_rounded
+                : Icons.dark_mode_rounded,
             size: 18,
             color: AppColors.foreground(context),
           ),
@@ -370,15 +382,17 @@ class _Footer extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: EdgeInsets.symmetric(
-        horizontal: Responsive.value(context, mobile: 24, tablet: 48, desktop: 64),
+        horizontal: Responsive.value(
+          context,
+          mobile: 24,
+          tablet: 48,
+          desktop: 64,
+        ),
         vertical: AppSpacing.xl,
       ),
       decoration: BoxDecoration(
         border: Border(
-          top: BorderSide(
-            color: AppColors.border(context),
-            width: 1,
-          ),
+          top: BorderSide(color: AppColors.border(context), width: 1),
         ),
       ),
       child: Center(
@@ -386,7 +400,9 @@ class _Footer extends StatelessWidget {
           children: [
             Text(
               'Built with Flutter & ❤️',
-              style: AppTypography.bodySmall(AppColors.mutedForeground(context)),
+              style: AppTypography.bodySmall(
+                AppColors.mutedForeground(context),
+              ),
             ),
             const SizedBox(height: AppSpacing.xs),
             Text(

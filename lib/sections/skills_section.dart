@@ -19,7 +19,9 @@ class SkillsSection extends StatelessWidget {
       color: AppColors.muted(context).withValues(alpha: 0.3),
       child: Center(
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: Responsive.contentMaxWidth(context)),
+          constraints: BoxConstraints(
+            maxWidth: Responsive.contentMaxWidth(context),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -29,22 +31,26 @@ class SkillsSection extends StatelessWidget {
                 children: [
                   Text(
                     'Skills & Expertise',
-                    style: AppTypography.headingLarge(AppColors.foreground(context)),
+                    style: AppTypography.headingLarge(
+                      AppColors.foreground(context),
+                    ),
                   ),
                   const SizedBox(height: AppSpacing.sm),
                   Text(
                     'Technologies and tools I work with daily',
-                    style: AppTypography.bodyMedium(AppColors.mutedForeground(context)),
+                    style: AppTypography.bodyMedium(
+                      AppColors.mutedForeground(context),
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: AppSpacing.xl),
-              
+
               // Skills grid
               LayoutBuilder(
                 builder: (context, constraints) {
                   final crossAxisCount = Responsive.gridColumns(context);
-                  
+
                   return GridView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
@@ -52,11 +58,11 @@ class SkillsSection extends StatelessWidget {
                       crossAxisCount: crossAxisCount,
                       crossAxisSpacing: AppSpacing.md,
                       mainAxisSpacing: AppSpacing.md,
-                      childAspectRatio: Responsive.value(
+                      mainAxisExtent: Responsive.value(
                         context,
-                        mobile: 1.2,
-                        tablet: 1.5,
-                        desktop: 1.6,
+                        mobile: 200, // Fixed height for mobile
+                        tablet: 220, // Fixed height for tablet
+                        desktop: 240, // Fixed height for desktop
                       ),
                     ),
                     itemCount: skillsData.length,
@@ -110,12 +116,15 @@ class _SkillCategoryCard extends StatelessWidget {
                   children: [
                     Text(
                       category.name,
-                      style: AppTypography.bodyMedium(AppColors.foreground(context))
-                          .copyWith(fontWeight: FontWeight.w600),
+                      style: AppTypography.bodyMedium(
+                        AppColors.foreground(context),
+                      ).copyWith(fontWeight: FontWeight.w600),
                     ),
                     Text(
                       category.description,
-                      style: AppTypography.caption(AppColors.mutedForeground(context)),
+                      style: AppTypography.caption(
+                        AppColors.mutedForeground(context),
+                      ),
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
@@ -125,7 +134,7 @@ class _SkillCategoryCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: AppSpacing.md),
-          
+
           // Skills badges
           Expanded(
             child: SingleChildScrollView(

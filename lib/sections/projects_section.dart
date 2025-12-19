@@ -22,7 +22,9 @@ class ProjectsSection extends StatelessWidget {
       padding: Responsive.sectionPadding(context),
       child: Center(
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: Responsive.contentMaxWidth(context)),
+          constraints: BoxConstraints(
+            maxWidth: Responsive.contentMaxWidth(context),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -32,17 +34,21 @@ class ProjectsSection extends StatelessWidget {
                 children: [
                   Text(
                     'Featured Projects',
-                    style: AppTypography.headingLarge(AppColors.foreground(context)),
+                    style: AppTypography.headingLarge(
+                      AppColors.foreground(context),
+                    ),
                   ),
                   const SizedBox(height: AppSpacing.sm),
                   Text(
                     'A selection of projects that showcase my skills and experience',
-                    style: AppTypography.bodyMedium(AppColors.mutedForeground(context)),
+                    style: AppTypography.bodyMedium(
+                      AppColors.mutedForeground(context),
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: AppSpacing.xl),
-              
+
               // Project tabs
               ShadcnTabs(
                 tabs: [
@@ -119,11 +125,11 @@ class _ProjectGrid extends StatelessWidget {
             crossAxisCount: crossAxisCount,
             crossAxisSpacing: AppSpacing.md,
             mainAxisSpacing: AppSpacing.md,
-            childAspectRatio: Responsive.value(
+            mainAxisExtent: Responsive.value(
               context,
-              mobile: 0.9,
-              tablet: 1.0,
-              desktop: 1.1,
+              mobile: 280, // Guaranteed safe height
+              tablet: 300, // Balanced for tablet
+              desktop: 320, // Sleek and spacious
             ),
           ),
           itemCount: projects.length,
@@ -147,12 +153,13 @@ class _ProjectCard extends StatelessWidget {
     return ShadcnCard(
       hoverable: true,
       onTap: () => _showProjectDetails(context),
+      padding: const EdgeInsets.all(AppSpacing.md),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Project image placeholder
           Container(
-            height: 120,
+            height: 70, // Slightly smaller to ensure fit
             width: double.infinity,
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -168,13 +175,14 @@ class _ProjectCard extends StatelessWidget {
             child: Center(
               child: Icon(
                 _getCategoryIcon(),
-                size: 40,
+                size: 32, // Reduced size
                 color: AppColors.accent(context),
               ),
             ),
           ),
-          const SizedBox(height: AppSpacing.md),
-          
+          const SizedBox(
+            height: AppSpacing.md,
+          ), // More breathing room after image
           // Title
           Text(
             project.title,
@@ -182,26 +190,28 @@ class _ProjectCard extends StatelessWidget {
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
           ),
-          const SizedBox(height: AppSpacing.xs),
-          
+          const SizedBox(height: AppSpacing.xxs),
+
           // Description
           Expanded(
             child: Text(
               project.description,
-              style: AppTypography.bodySmall(AppColors.mutedForeground(context)),
-              maxLines: 2,
+              style: AppTypography.bodySmall(
+                AppColors.mutedForeground(context),
+              ),
+              maxLines: 3, // Increased to allow more text if space allows
               overflow: TextOverflow.ellipsis,
             ),
           ),
-          const SizedBox(height: AppSpacing.md),
-          
+          const SizedBox(height: AppSpacing.sm), // Tighter spacing for safety
           // Tech badges
           SizedBox(
             height: 24,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: project.technologies.take(3).length,
-              separatorBuilder: (_, __) => const SizedBox(width: AppSpacing.xs),
+              separatorBuilder: (context, index) =>
+                  const SizedBox(width: AppSpacing.xs),
               itemBuilder: (context, index) {
                 final tech = project.technologies[index];
                 return ShadcnBadge(
@@ -211,8 +221,8 @@ class _ProjectCard extends StatelessWidget {
               },
             ),
           ),
-          const SizedBox(height: AppSpacing.md),
-          
+          const SizedBox(height: AppSpacing.xs),
+
           // Action buttons
           Row(
             children: [
@@ -272,10 +282,12 @@ class _ProjectCard extends StatelessWidget {
                 // Full description
                 Text(
                   project.fullDescription ?? project.description,
-                  style: AppTypography.bodyMedium(AppColors.mutedForeground(context)),
+                  style: AppTypography.bodyMedium(
+                    AppColors.mutedForeground(context),
+                  ),
                 ),
                 const SizedBox(height: AppSpacing.lg),
-                
+
                 // Technologies
                 Text(
                   'Technologies Used',

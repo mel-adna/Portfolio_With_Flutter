@@ -39,7 +39,9 @@ class _ContactSectionState extends State<ContactSection> {
       padding: Responsive.sectionPadding(context),
       child: Center(
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: Responsive.contentMaxWidth(context)),
+          constraints: BoxConstraints(
+            maxWidth: Responsive.contentMaxWidth(context),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -49,17 +51,21 @@ class _ContactSectionState extends State<ContactSection> {
                 children: [
                   Text(
                     'Get In Touch',
-                    style: AppTypography.headingLarge(AppColors.foreground(context)),
+                    style: AppTypography.headingLarge(
+                      AppColors.foreground(context),
+                    ),
                   ),
                   const SizedBox(height: AppSpacing.sm),
                   Text(
                     "Let's discuss your project or just say hello",
-                    style: AppTypography.bodyMedium(AppColors.mutedForeground(context)),
+                    style: AppTypography.bodyMedium(
+                      AppColors.mutedForeground(context),
+                    ),
                   ),
                 ],
               ),
               const SizedBox(height: AppSpacing.xl),
-              
+
               // Contact content
               ResponsiveBuilder(
                 mobile: _MobileLayout(
@@ -169,9 +175,7 @@ class _DesktopLayout extends StatelessWidget {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Expanded(
-          child: _ContactInfo(),
-        ),
+        Expanded(child: _ContactInfo()),
         const SizedBox(width: AppSpacing.xxl),
         Expanded(
           flex: 2,
@@ -205,7 +209,7 @@ class _ContactInfo extends StatelessWidget {
           style: AppTypography.bodyMedium(AppColors.mutedForeground(context)),
         ),
         const SizedBox(height: AppSpacing.xl),
-        
+
         // Contact methods
         _ContactMethod(
           icon: Icons.email_rounded,
@@ -226,7 +230,7 @@ class _ContactInfo extends StatelessWidget {
           value: 'Open to new opportunities',
         ),
         const SizedBox(height: AppSpacing.xl),
-        
+
         // Social links
         Row(
           children: [
@@ -273,7 +277,9 @@ class _ContactMethod extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: MouseRegion(
-        cursor: onTap != null ? SystemMouseCursors.click : SystemMouseCursors.basic,
+        cursor: onTap != null
+            ? SystemMouseCursors.click
+            : SystemMouseCursors.basic,
         child: Row(
           children: [
             Container(
@@ -282,11 +288,7 @@ class _ContactMethod extends StatelessWidget {
                 color: AppColors.accent(context).withValues(alpha: 0.1),
                 borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
               ),
-              child: Icon(
-                icon,
-                size: 20,
-                color: AppColors.accent(context),
-              ),
+              child: Icon(icon, size: 20, color: AppColors.accent(context)),
             ),
             const SizedBox(width: AppSpacing.md),
             Column(
@@ -294,11 +296,15 @@ class _ContactMethod extends StatelessWidget {
               children: [
                 Text(
                   label,
-                  style: AppTypography.caption(AppColors.mutedForeground(context)),
+                  style: AppTypography.caption(
+                    AppColors.mutedForeground(context),
+                  ),
                 ),
                 Text(
                   value,
-                  style: AppTypography.bodyMedium(AppColors.foreground(context)),
+                  style: AppTypography.bodyMedium(
+                    AppColors.foreground(context),
+                  ),
                 ),
               ],
             ),
@@ -314,11 +320,7 @@ class _SocialButton extends StatefulWidget {
   final String label;
   final VoidCallback? onTap;
 
-  const _SocialButton({
-    required this.icon,
-    required this.label,
-    this.onTap,
-  });
+  const _SocialButton({required this.icon, required this.label, this.onTap});
 
   @override
   State<_SocialButton> createState() => _SocialButtonState();
@@ -339,9 +341,7 @@ class _SocialButtonState extends State<_SocialButton> {
           duration: const Duration(milliseconds: 150),
           padding: const EdgeInsets.all(AppSpacing.sm),
           decoration: BoxDecoration(
-            color: _isHovered
-                ? AppColors.muted(context)
-                : Colors.transparent,
+            color: _isHovered ? AppColors.muted(context) : Colors.transparent,
             borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
             border: Border.all(color: AppColors.border(context)),
           ),
@@ -388,7 +388,7 @@ class _ContactForm extends StatelessWidget {
               style: AppTypography.headingSmall(AppColors.foreground(context)),
             ),
             const SizedBox(height: AppSpacing.lg),
-            
+
             // Name field
             ShadcnInput(
               controller: nameController,
@@ -397,7 +397,7 @@ class _ContactForm extends StatelessWidget {
               prefixIcon: Icons.person_outline_rounded,
             ),
             const SizedBox(height: AppSpacing.md),
-            
+
             // Email field
             ShadcnInput(
               controller: emailController,
@@ -407,7 +407,7 @@ class _ContactForm extends StatelessWidget {
               prefixIcon: Icons.email_outlined,
             ),
             const SizedBox(height: AppSpacing.md),
-            
+
             // Message field
             ShadcnTextarea(
               controller: messageController,
@@ -417,7 +417,7 @@ class _ContactForm extends StatelessWidget {
               maxLines: 8,
             ),
             const SizedBox(height: AppSpacing.lg),
-            
+
             // Submit button
             ShadcnButton(
               text: isLoading ? 'Sending...' : 'Send Message',

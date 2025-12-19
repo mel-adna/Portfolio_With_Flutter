@@ -16,7 +16,9 @@ class AboutSection extends StatelessWidget {
       padding: Responsive.sectionPadding(context),
       child: Center(
         child: ConstrainedBox(
-          constraints: BoxConstraints(maxWidth: Responsive.contentMaxWidth(context)),
+          constraints: BoxConstraints(
+            maxWidth: Responsive.contentMaxWidth(context),
+          ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -26,7 +28,7 @@ class AboutSection extends StatelessWidget {
                 subtitle: 'Get to know my background and what drives me',
               ),
               const SizedBox(height: AppSpacing.xl),
-              
+
               // Content
               ResponsiveBuilder(
                 mobile: _MobileLayout(),
@@ -63,16 +65,10 @@ class _DesktopLayout extends StatelessWidget {
         _ProfileImage(),
         const SizedBox(width: AppSpacing.xxl),
         // About content takes most space
-        Expanded(
-          flex: 3,
-          child: _AboutContent(),
-        ),
+        Expanded(flex: 3, child: _AboutContent()),
         const SizedBox(width: AppSpacing.xl),
         // Stats on the right - compact
-        SizedBox(
-          width: 180,
-          child: _StatsCard(),
-        ),
+        SizedBox(width: 180, child: _StatsCard()),
       ],
     );
   }
@@ -81,8 +77,13 @@ class _DesktopLayout extends StatelessWidget {
 class _ProfileImage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final size = Responsive.value(context, mobile: 180.0, tablet: 240.0, desktop: 300.0);
-    
+    final size = Responsive.value(
+      context,
+      mobile: 180.0,
+      tablet: 240.0,
+      desktop: 300.0,
+    );
+
     return Container(
       width: size,
       height: size,
@@ -161,7 +162,10 @@ class _HighlightRow extends StatelessWidget {
       runSpacing: AppSpacing.md,
       children: const [
         _Highlight(icon: Icons.location_on_rounded, label: 'Based in Morocco'),
-        _Highlight(icon: Icons.code_rounded, label: 'Flutter • Dart • Firebase'),
+        _Highlight(
+          icon: Icons.code_rounded,
+          label: 'Flutter • Dart • Firebase',
+        ),
         _Highlight(icon: Icons.work_rounded, label: 'Open to Work'),
       ],
     );
@@ -179,16 +183,13 @@ class _Highlight extends StatelessWidget {
     return Row(
       mainAxisSize: MainAxisSize.min,
       children: [
-        Icon(
-          icon,
-          size: 18,
-          color: AppColors.accent(context),
-        ),
+        Icon(icon, size: 18, color: AppColors.accent(context)),
         const SizedBox(width: AppSpacing.sm),
         Text(
           label,
-          style: AppTypography.bodySmall(AppColors.foreground(context))
-              .copyWith(fontWeight: FontWeight.w500),
+          style: AppTypography.bodySmall(
+            AppColors.foreground(context),
+          ).copyWith(fontWeight: FontWeight.w500),
         ),
       ],
     );

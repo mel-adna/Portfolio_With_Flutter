@@ -98,8 +98,8 @@ Key Features:
 • Smooth animations and transitions
 • Contact form with validation''',
     technologies: ['Flutter Web', 'Dart', 'Responsive Design'],
-    githubUrl: 'https://github.com/mel-adna',
-    demoUrl: 'https://mel-adna.github.io',
+    githubUrl: 'https://github.com/mel-adna/Portfolio_With_Flutter',
+    demoUrl: 'https://mel-adna.github.io/Portfolio_With_Flutter',
     category: ProjectCategory.web,
   ),
 ];

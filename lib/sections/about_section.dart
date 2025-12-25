@@ -104,7 +104,7 @@ class _ProfileImage extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppSpacing.radiusXl - 2),
         child: Image.asset(
-          'assets/images/profile.jpg',
+          'assets/images/profile.png',
           fit: BoxFit.cover,
           errorBuilder: (context, error, stackTrace) {
             // Fallback if image fails to load

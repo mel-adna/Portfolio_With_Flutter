@@ -7,12 +7,15 @@ A modern, high-performance, and fully responsive portfolio application built wit
 - **Fully Responsive**: Optimized for all devices—mobile, tablet, and desktop—using a custom responsive grid system involving `mainAxisExtent` and flexible layouts.
 - **Modern Aesthetic**: Inspired by the `shadcn/ui` design system, featuring clean typography (Inter), subtle shadows, and a professional monochrome palette.
 - **Dark & Light Mode**: Seamless theme switching with persistent state management.
+- **Project Showcase**: Rich project cards with real screenshots and GitHub links.
+- **Resume Download**: One-click PDF download for recruiters.
+- **Direct Contact**: Integrated contact form powered by EmailJS—send emails directly from the site without a backend.
 - **Interactive Sections**:
   - **About**: Personal background and core values.
   - **Skills**: Categorized technical expertise (Core, State Management, Tools).
   - **Projects**: Filterable showcase with detailed cards and action buttons.
   - **Experience**: Timeline-based history including Freelance and 1337.
-  - **Contact**: Integrated contact form and social links.
+  - **Contact**: Functional form and social links.
 
 ## Tech Stack
 
@@ -21,7 +24,7 @@ A modern, high-performance, and fully responsive portfolio application built wit
 - **UI Architecture**: Custom responsive widgets & clean architecture
 - **Design System**: Custom implementation inspired by Shadcn UI
 - **Typography**: [Google Fonts (Inter)](https://fonts.google.com/specimen/Inter)
-- **Icons**: Lucide-inspired Material Icons
+- **Services**: [EmailJS](https://www.emailjs.com/) (Contact Form), [Url Launcher](https://pub.dev/packages/url_launcher)
 
 ## Getting Started
 
@@ -44,21 +47,29 @@ A modern, high-performance, and fully responsive portfolio application built wit
    flutter pub get
    ```
 
-3. **Run the application**
+3. **Configure Environment Variables**
+   Create a `.env` file in the root directory:
+   ```env
+   EMAILJS_SERVICE_ID=your_service_id
+   EMAILJS_TEMPLATE_ID=your_template_id
+   EMAILJS_USER_ID=your_public_key
+   ```
+
+4. **Run the application**
    ```bash
    flutter run -d chrome
    ```
 
 ## Deployment
 
-This project is optimized for web deployment (e.g., GitHub Pages, Firebase Hosting, Vercel).
+This project is optimized for web deployment (e.g., GitHub Pages).
 
 ### Deploy to GitHub Pages
 
 1.  **Build the web application:**
     ```bash
-    flutter build web --release --base-href "/<REPO_NAME>/"
-    # Example: flutter build web --release --base-href "/portfolio/"
+    flutter build web --release --base-href "/"
+    # Note: Use "/<REPO_NAME>/" if deploying to a project page instead of a user site.
     ```
 
 2.  **Deploy:**

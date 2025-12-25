@@ -4,6 +4,7 @@ import '../core/theme/app_spacing.dart';
 import '../core/theme/app_typography.dart';
 import '../core/utils/responsive.dart';
 import '../widgets/buttons/shadcn_button.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 /// Hero section - the first impression
 class HeroSection extends StatelessWidget {
@@ -145,6 +146,20 @@ class HeroSection extends StatelessWidget {
                 variant: ShadcnButtonVariant.outline,
                 size: isMobile ? ShadcnButtonSize.md : ShadcnButtonSize.lg,
                 onPressed: onContact,
+              ),
+              ShadcnButton(
+                text: 'Download Resume',
+                icon: Icons.download_rounded,
+                variant: ShadcnButtonVariant.ghost,
+                size: isMobile ? ShadcnButtonSize.md : ShadcnButtonSize.lg,
+                onPressed: () {
+                  launchUrl(
+                    Uri.parse(
+                      'assets/assets/docs/Mohamed_El_Adnani_Resume.pdf',
+                    ),
+                    mode: LaunchMode.externalApplication,
+                  );
+                },
               ),
             ],
           ),

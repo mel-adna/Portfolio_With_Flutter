@@ -5,6 +5,7 @@ import '../core/theme/app_colors.dart';
 import '../core/theme/app_spacing.dart';
 import '../core/theme/app_typography.dart';
 import '../core/utils/responsive.dart';
+import '../core/services/email_service.dart';
 import '../widgets/buttons/shadcn_button.dart';
 import '../widgets/cards/shadcn_card.dart';
 import '../widgets/input/shadcn_input.dart';
@@ -98,22 +99,48 @@ class _ContactSectionState extends State<ContactSection> {
 
     setState(() => _isLoading = true);
 
-    // Simulate API call
-    await Future.delayed(const Duration(seconds: 2));
-
-    setState(() => _isLoading = false);
-
-    if (mounted) {
-      ShadcnToast.show(
-        context,
-        message: 'Message sent successfully!',
-        description: "I'll get back to you as soon as possible.",
-        variant: ShadcnToastVariant.success,
+    try {
+      final success = await EmailService.sendEmail(
+        name: _nameController.text,
+        email: _emailController.text,
+        message: _messageController.text,
       );
 
-      _nameController.clear();
-      _emailController.clear();
-      _messageController.clear();
+      if (mounted) {
+        if (success) {
+          ShadcnToast.show(
+            context,
+            message: 'Message sent successfully!',
+            description: "I'll get back to you as soon as possible.",
+            variant: ShadcnToastVariant.success,
+          );
+
+          _nameController.clear();
+          _emailController.clear();
+          _messageController.clear();
+        } else {
+          ShadcnToast.show(
+            context,
+            message: 'Failed to send message',
+            description:
+                "Please populate your EmailJS keys or try again later.",
+            variant: ShadcnToastVariant.error,
+          );
+        }
+      }
+    } catch (e) {
+      if (mounted) {
+        ShadcnToast.show(
+          context,
+          message: 'An error occurred',
+          description: "Please try again later.",
+          variant: ShadcnToastVariant.error,
+        );
+      }
+    } finally {
+      if (mounted) {
+        setState(() => _isLoading = false);
+      }
     }
   }
 }

@@ -41,23 +41,26 @@ class _ShadcnTabsState extends State<ShadcnTabs> {
             borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
           ),
           padding: const EdgeInsets.all(AppSpacing.xs),
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: widget.tabs.asMap().entries.map((entry) {
-              final index = entry.key;
-              final tab = entry.value;
-              final isSelected = index == _selectedIndex;
+          child: SingleChildScrollView(
+            scrollDirection: Axis.horizontal,
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: widget.tabs.asMap().entries.map((entry) {
+                final index = entry.key;
+                final tab = entry.value;
+                final isSelected = index == _selectedIndex;
 
-              return _TabItem(
-                label: tab.label,
-                icon: tab.icon,
-                isSelected: isSelected,
-                onTap: () {
-                  setState(() => _selectedIndex = index);
-                  widget.onTabChanged?.call(index);
-                },
-              );
-            }).toList(),
+                return _TabItem(
+                  label: tab.label,
+                  icon: tab.icon,
+                  isSelected: isSelected,
+                  onTap: () {
+                    setState(() => _selectedIndex = index);
+                    widget.onTabChanged?.call(index);
+                  },
+                );
+              }).toList(),
+            ),
           ),
         ),
         // Tab content
@@ -107,8 +110,8 @@ class _TabItemState extends State<_TabItem> {
             color: widget.isSelected
                 ? AppColors.background(context)
                 : _isHovered
-                    ? AppColors.background(context).withValues(alpha: 0.5)
-                    : Colors.transparent,
+                ? AppColors.background(context).withValues(alpha: 0.5)
+                : Colors.transparent,
             borderRadius: BorderRadius.circular(AppSpacing.radiusSm),
             boxShadow: widget.isSelected
                 ? [
@@ -155,9 +158,5 @@ class ShadcnTab {
   final IconData? icon;
   final Widget content;
 
-  const ShadcnTab({
-    required this.label,
-    this.icon,
-    required this.content,
-  });
+  const ShadcnTab({required this.label, this.icon, required this.content});
 }

@@ -128,9 +128,9 @@ class _ProjectGrid extends StatelessWidget {
             mainAxisSpacing: AppSpacing.md,
             mainAxisExtent: Responsive.value(
               context,
-              mobile: 280, // Guaranteed safe height
-              tablet: 300, // Balanced for tablet
-              desktop: 320, // Sleek and spacious
+              mobile: 360, // Increased for larger images
+              tablet: 380,
+              desktop: 400,
             ),
           ),
           itemCount: projects.length,
@@ -158,28 +158,51 @@ class _ProjectCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Project image placeholder
+          // Project image or placeholder
           Container(
-            height: 70, // Slightly smaller to ensure fit
+            height: 140, // Increased height for better screenshot visibility
             width: double.infinity,
             decoration: BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  AppColors.accent(context).withValues(alpha: 0.2),
-                  AppColors.accent(context).withValues(alpha: 0.05),
-                ],
-              ),
+              color: AppColors.card(context), // Fallback color
               borderRadius: BorderRadius.circular(AppSpacing.radiusMd),
-            ),
-            child: Center(
-              child: Icon(
-                _getCategoryIcon(),
-                size: 32, // Reduced size
-                color: AppColors.accent(context),
+              border: Border.all(
+                color: AppColors.border(context).withValues(alpha: 0.5),
               ),
             ),
+            clipBehavior: Clip.antiAlias, // Clip image to border radius
+            child: project.imageUrl != null
+                ? Image.asset(
+                    project.imageUrl!,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Center(
+                        child: Icon(
+                          _getCategoryIcon(),
+                          size: 48,
+                          color: AppColors.mutedForeground(context),
+                        ),
+                      );
+                    },
+                  )
+                : Container(
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          AppColors.accent(context).withValues(alpha: 0.2),
+                          AppColors.accent(context).withValues(alpha: 0.05),
+                        ],
+                      ),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        _getCategoryIcon(),
+                        size: 48,
+                        color: AppColors.accent(context),
+                      ),
+                    ),
+                  ),
           ),
           const SizedBox(
             height: AppSpacing.md,

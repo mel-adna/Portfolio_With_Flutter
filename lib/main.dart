@@ -4,6 +4,11 @@ import 'app.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await dotenv.load(fileName: ".env");
+  try {
+    await dotenv.load(fileName: "env");
+  } catch (e) {
+    debugPrint("Warning: Failed to load .env file: $e");
+    // Continue execution even if .env fails to load
+  }
   runApp(const PortfolioApp());
 }

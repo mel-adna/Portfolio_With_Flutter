@@ -7,8 +7,8 @@ Future<void> main() async {
   try {
     await dotenv.load(fileName: "env");
   } catch (e) {
-    debugPrint("Warning: Failed to load .env file: $e");
-    // Continue execution even if .env fails to load
+    debugPrint("Warning: Failed to load env file: $e");
+    // Continue execution even if env fails to load
   }
   runApp(const PortfolioApp());
 }
